@@ -1,0 +1,28 @@
+<%- include('../includes/header.ejs', { titulo : 'Adicionar Alunos'}) %>
+
+<main>
+    <h2>Adicionar Novo Aluno</h2>
+
+    <form action="/alunos/novo" method="POST" class="form">
+        <div class="form-group">
+            <label for="nome_aluno">Nome do Aluno:</label>
+            <input type="text" id="nome_aluno" name="nome_aluno" required>
+        </div>
+        <div class="form-group">
+            <label for="id_turma"> Turma:</label>
+            <select name="id_turma" id="id_turma">
+                <% for (let turma of turmasCadastradas) { %>
+                    <option value="<%= turma.id_turma %>"><%= turma.nome_turma %></option>
+                <% } %>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary"> Adicionar </button>
+        <a href="/alunos/" class="btn btn-secondary"> Cancelar </a>
+
+        <% if (typeof mensagem != 'undefined') { %>
+            <p class="erro"><%= mensagem %></p>
+        <% } %>
+    </form>
+</main>
+
+<%- include ('../includes/footer.ejs') %>
